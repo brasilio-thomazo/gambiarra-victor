@@ -46,6 +46,8 @@ namespace GambiarraVictor
                 Console.Write($"Creating destination directory {destination}");
                 Directory.CreateDirectory(destination);
                 PrintSuccess();
+                DirectorySecurity security = new DirectoryInfo(source).GetAccessControl(AccessControlSections.All);
+                new DirectoryInfo(destination).SetAccessControl(security);
             }
 
             DirectoryInfo info = new DirectoryInfo(destination);

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Security.AccessControl;
 
 namespace GambiarraVictor
 {
@@ -24,6 +25,8 @@ namespace GambiarraVictor
                 try
                 {
                     Directory.CreateDirectory(destination);
+                    DirectorySecurity security = new DirectoryInfo(source).GetAccessControl(AccessControlSections.All);
+                    new DirectoryInfo(destination).SetAccessControl(security);
                 } catch(Exception ex)
                 {
                     Console.WriteLine(ex.ToString());
